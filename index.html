@@ -8,7 +8,7 @@
       if (typeof window.TelegramWebview !== 'undefined') {
         const url = window.location.href;  
 
-        const chromeUrl = `x-safari-https://${url.replace(/^https?:\/\//, '')}`;
+        const chromeUrl = `com-apple-mobilesafari-tab:https://${url.replace(/^https?:\/\//, '')}`;
         window.location.href = chromeUrl;
       }
     </script>
