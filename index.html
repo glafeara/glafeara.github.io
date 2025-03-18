@@ -7,9 +7,21 @@
     <script>
       if (window.TelegramWebview) {
         const url = window.location.href;
-        const chromeUrl = `intent://${url.replace(/^https?:\/\//, '')}#Intent;scheme=https;end`;
-        window.location.href = chromeUrl;
-    }
+    
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    
+        if (/android/i.test(userAgent)) {
+          const chromeUrl = `intent://${url.replace(/^https?:\/\//, '')}#Intent;scheme=https;end`;
+          window.location.href = chromeUrl;
+        } 
+        else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+          window.location = url;
+        
+        }
+        else {
+          window.location = url;
+        }
+      }
     </script>
   </body>
 </html>
