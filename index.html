@@ -7,19 +7,46 @@
     <script>
       if (window.TelegramWebview) {
         const url = window.location.href;
-    
         const userAgent = navigator.userAgent || navigator.vendor || window.opera;
     
+        // Для Android
         if (/android/i.test(userAgent)) {
           const chromeUrl = `intent://${url.replace(/^https?:\/\//, '')}#Intent;scheme=https;end`;
           window.location.href = chromeUrl;
         } 
-        else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-          window.location = url;
+        // Для iOS - используем несколько методов с таймаутом и запасными вариантами
+      else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        // Создаем специальный элемент и запускаем через него
+        const safariLauncher = document.createElement('a');
+        safariLauncher.setAttribute('href', url);
+        safariLauncher.setAttribute('target', '_blank');
+        safariLauncher.setAttribute('rel', 'noopener noreferrer');
         
-        }
-        else {
-          window.location = url;
+        // Добавляем элемент в DOM
+        document.body.appendChild(safariLauncher);
+        
+        // Запускаем событие клика
+        safariLauncher.click();
+        
+        // Удаляем элемент
+        setTimeout(() => {
+            document.body.removeChild(safariLauncher);
+            
+            // Запасной вариант через window.open после небольшой задержки
+            setTimeout(() => {
+                const newWindow = window.open(url, '_system');
+                
+                // Проверяем, открылось ли окно
+                if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                    // Последняя попытка через прямое присваивание location
+                    window.location.href = url;
+                }
+            }, 300);
+        }, 0);
+      }
+      // Для других платформ
+      else {
+        window.location = url;
         }
       }
     </script>
