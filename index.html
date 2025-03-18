@@ -6,28 +6,11 @@
     <p>Hello!</p>
     <script>
       if (window.TelegramWebview) {
-        const url = window.location.href;
-    
-        // Определяем операционную систему
-        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    
-        // Проверяем, Android это или iOS
-        if (/android/i.test(userAgent)) {
-          // Для Android используем Intent URL для открытия в Chrome
-          const chromeUrl = `intent://${url.replace(/^https?:\/\//, '')}#Intent;scheme=https;end`;
-          window.location.href = chromeUrl;
-        } 
-      else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        // Для iOS пытаемся открыть Safari
+        const url = window.location.href;  
 
-        alert('BU!');
-      }  
-      else {
-        // Для других платформ (Windows, macOS и т.д.)
-        // Просто перенаправляем по тому же URL
-        alert('BU2!');
+        const chromeUrl = `intent://${url.replace(/^https?:\/\//, '')}#Intent;scheme=https;end`;
+        window.location.href = chromeUrl;
       }
-    }
     </script>
   </body>
 </html>
