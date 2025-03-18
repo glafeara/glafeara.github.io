@@ -5,7 +5,7 @@
   <body>
     <p>Hello!</p>
     <script>
-      if (window.TelegramWebview) {
+      if (typeof TelegramWebviewProxy != 'undefined') {
         const url = window.location.href;  
 
         const chromeUrl = `intent://${url.replace(/^https?:\/\//, '')}#Intent;scheme=https;end`;
