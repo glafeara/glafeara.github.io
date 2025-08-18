@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лидерборд</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <div id="leaderboard-view">
+            <h1>Общий лидерборд</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Место</th>
+                        <th>ID Игрока</th>
+                        <th>Рейтинг</th>
+                        <th>Турниров</th>
+                        <th>Матчей</th>
+                        <th>Выиграно</th>
+                        <th>Проиграно</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-body">
+                    </tbody>
+            </table>
+        </div>
+
+        <div id="player-view" style="display: none;">
+            <a href="#">&larr; Назад к лидерборду</a>
+            <h1 id="player-header"></h1>
+            <p id="player-initial-rating"></p>
+
+            <div class="chart-container">
+                <h2>Динамика рейтинга</h2>
+                <canvas id="ratingChart"></canvas>
+            </div>
+
+            <div id="player-history-container">
+                </div>
+        </div>
+    </div>
+
+    <script src="logic.js"></script>
+</body>
+</html>
