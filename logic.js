@@ -346,7 +346,7 @@ function displayPlayerDetails(playerData) {
 
 
 async function main() {
-    const tournaments = await (await fetch('tournaments_data.json')).json();
+    const tournaments = await (await fetch('data.json')).json();
     const calculator = new PadelRatingCalculatorJS(tournaments);
     calculator.processTournaments();
 
